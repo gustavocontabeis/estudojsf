@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form id="formMenu">
+		<p:menubar id="menuBar">
+			<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
+			<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/pessoa/cadastro.xhtml" />
+			<p:menuitem value="Consulta" icon="fa fa-fw fa-search" url="#{request.contextPath}/sistema/pessoa/consulta.xhtml" />
+			<f:facet name="options">
+				<p:commandButton value="Sair" icon="fa fa-fw fa-sign-out" action="#{usuarioController.logout}" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+
+</html>
