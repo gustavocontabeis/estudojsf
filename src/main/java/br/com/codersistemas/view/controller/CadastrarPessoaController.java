@@ -2,6 +2,7 @@ package br.com.codersistemas.view.controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
@@ -20,6 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import br.com.codersistemas.annotations.AppLogger;
 import br.com.codersistemas.exceptions.AppException;
 import br.com.codersistemas.model.entity.Pessoa;
 import br.com.codersistemas.model.repository.PessoaRepository;
@@ -29,7 +31,9 @@ import br.com.codersistemas.uteis.Uteis;
 @Named(value="cadastrarPessoaController")
 public class CadastrarPessoaController extends CrudController {
 	
-	private Logger LOG = LoggerFactory.getLogger(CadastrarPessoaController.class.getSimpleName());
+	@Inject
+	@AppLogger
+	private java.util.logging.Logger LOG;
 
 	@Inject
 	private Pessoa obj;
@@ -66,7 +70,7 @@ public class CadastrarPessoaController extends CrudController {
 	
 	@Override
 	public void clonar(ActionEvent evt) {
-		LOG.error("clonar {}", obj);
+		LOG.severe(String.format("clonar %s", obj.toString()));
 		obj = clonar(obj);
 	}
 	
@@ -98,9 +102,12 @@ public class CadastrarPessoaController extends CrudController {
 
 	@Override
 	public String selecionar(Object pessoa) {
-		LOG.info("selecionar {}", pessoa);
+		LOG.log(Level.INFO, String.format("selecionar %s", pessoa));
 		this.obj = (Pessoa) pessoa;
 		this.obj.setSexo( this.obj.getSexo().equals("Masculino")? "M" : "F" );
+		
+		//#{request.contextPath}/sistema/pessoa/cadastro.xhtml
+		//return "/estudojsf/sistema/pessoa/cadastro.xhtml"; 
 		return "cadastro.xhtml";//?faces-redirect=true
 	}
 

@@ -5,16 +5,21 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.codersistemas.model.entity.Pessoa;
 import br.com.codersistemas.model.repository.PessoaRepository;
- 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
- 
+@Data 
+@Builder
+@AllArgsConstructor 
+@NoArgsConstructor 
 @Named(value="consultarPessoaController")
 @ViewScoped
 public class ConsultarPessoaController implements Serializable {
@@ -35,17 +40,4 @@ public class ConsultarPessoaController implements Serializable {
 		this.list = pessoaRepository.getPessoas();
 	}
 	
-	public List<Pessoa> getList() {
-		return list;
-	}
-	public void setList(List<Pessoa> pessoas) {
-		this.list = pessoas;
-	}		
-	public Pessoa getObj() {
-		return obj;
-	}
-	public void setObj(Pessoa Pessoa) {
-		this.obj = Pessoa;
-	}
- 
 }
