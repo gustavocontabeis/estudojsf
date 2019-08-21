@@ -3,6 +3,7 @@ package br.com.codersistemas.model.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -63,7 +65,7 @@ public class Pessoa implements IEntity {
 	@Column(name="origem_cadastro", length=20)
 	private String origemCadastro;
  
-	@OneToOne
+	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="id_usuario_cadastro", foreignKey = @ForeignKey(value=ConstraintMode.CONSTRAINT, name="fk_pessoa_usuario"))
 	private Usuario usuario;
  

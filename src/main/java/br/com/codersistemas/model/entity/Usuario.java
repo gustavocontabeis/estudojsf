@@ -8,7 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import br.com.codersistemas.model.entity.Pessoa.PessoaBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
  
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity(name="usuario")
 //@NamedQuery(name = "UsuarioEntity.findUser", query= "SELECT u FROM UsuarioEntity u WHERE u.login = :usuario AND u.senha = :senha")
 public class Usuario implements IEntity {
@@ -30,31 +40,8 @@ public class Usuario implements IEntity {
 	@Column(length=100)
 	private String senha;
  
-	public Long getId() {
-		return id;
-	}
-	public void setCodigo(Long id) {
-		this.id = id;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
 	@Override
 	public LocalDateTime getExclusao() {
 		return exclusao;
 	}
-	public void setExclusao(LocalDateTime exclusao) {
-		this.exclusao = exclusao;
-	}
- 
 }

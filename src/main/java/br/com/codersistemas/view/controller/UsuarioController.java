@@ -58,7 +58,7 @@ public class UsuarioController implements Serializable {
 			obj = usuarioRepository.validaUsuario(obj);
 			if (obj != null) {
 				obj.setSenha(null);
-				obj.setCodigo(obj.getId());
+				obj.setId(obj.getId());
 				FacesContext facesContext = FacesContext.getCurrentInstance();
 				facesContext.getExternalContext().getSessionMap().put("usuarioAutenticado", obj);
 				return "sistema/home?faces-redirect=true";

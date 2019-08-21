@@ -2,13 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.edu.uepb</groupId>
+	<groupId>br.com.codersistemas</groupId>
 	<artifactId>estudojsf</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>estudojsf Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>Estudo JSF Maven Webapp</name>
+	<url>http://br.com.codersistemas/estudojsf</url>
 	<dependencies>
+	
 		<!-- JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -44,7 +45,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--JBoss/Weld implementação de referência do CDI para Servlet Container(Exemplo:Tomcat) -->
+		<!--JBoss/Weld implementação de referência do CDI para Servlet Container (Exemplo:Tomcat) -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
