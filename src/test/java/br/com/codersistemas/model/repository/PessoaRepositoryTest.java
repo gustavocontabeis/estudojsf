@@ -85,6 +85,41 @@ public class PessoaRepositoryTest {
 		
 	}
 
+	@Test
+	public void testPaginadoECount() {
+		
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<Pessoa> query = criteriaBuilder.createQuery(Pessoa.class);
+		Root<Pessoa> from = query.from(Pessoa.class);
+		
+		query.where(
+				criteriaBuilder.and(
+						criteriaBuilder.gt(from.get("id"), 1), 
+						criteriaBuilder.lt(from.get("id"), 1000))
+				);
+		
+		CriteriaQuery<Pessoa> select = query.select(from);
+
+		List<Pessoa> resultList = entityManager.createQuery(select).setFirstResult(0).setMaxResults(5).getResultList();
+		
+		for (Pessoa pessoa : resultList) {
+			System.out.println(pessoa);
+		}
+		
+		CriteriaBuilder criteriaBuilderCount = entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<Long> queryCount = criteriaBuilderCount.createQuery(Long.class);
+		Root<Pessoa> fromCount = queryCount.from(Pessoa.class);
+		
+		CriteriaQuery<Long> selectCount = queryCount.select(criteriaBuilder.count(fromCount));
+
+		Long count = entityManager.createQuery(selectCount).getSingleResult();
+		
+		System.out.println(count);
+		
+	}
+
 
 	private void inserir() {
 		for (int i = 0; i < 20; i++) {

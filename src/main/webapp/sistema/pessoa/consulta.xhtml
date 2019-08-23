@@ -19,9 +19,7 @@
 		
 			<p:toolbar id="tb">
 				<f:facet name="right">
-					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" actionListener="#{cadastrarPessoaController.novo}" update="@form" rendered="#{not empty cadastrarPessoaController.obj.id}" process="@this">
-						<p:resetInput target="@form" clearModel="" />
-					</p:commandButton>
+					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" actionListener="#{cadastrarPessoaController.novo}" update="@form" process="@this" />
 					<p:commandButton value="Exportar" title="Exportar para excel" id="exportar" icon="fa fa-file-excel-o" ajax="false">
 						 <p:dataExporter type="xls" target="list" fileName="export" />
 					</p:commandButton>
