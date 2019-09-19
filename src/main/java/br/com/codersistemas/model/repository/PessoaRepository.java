@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import br.com.codersistemas.exceptions.RepositoryException;
 import br.com.codersistemas.model.entity.Pessoa;
-import br.com.codersistemas.model.entity.Usuario;
 import br.com.codersistemas.uteis.Uteis;
 
 public class PessoaRepository {
@@ -33,28 +32,8 @@ public class PessoaRepository {
 				entityManager.persist(pessoa);
 				entityManager.flush();
 			}
-
 		} catch (Exception e) {
 			tratarExcessaoRepositorio(e);
-		}
-	}
-
-	private void tratarExcessaoRepositorio(Exception e) throws RepositoryException {
-		if (e instanceof PersistenceException) {
-			Throwable cause = e.getCause();
-			if (cause instanceof ConstraintViolationException) {
-				ConstraintViolationException ce = (ConstraintViolationException) cause;
-				try {
-					Configuration config = new PropertiesConfiguration("classpath:constraintsMessages.properties");
-					String mensagemConstraint = config.getString(ce.getConstraintName());
-					throw new RepositoryException(mensagemConstraint);
-				} catch (ConfigurationException constrEx) {
-					constrEx.printStackTrace();
-				}
-			}
-			throw new RepositoryException(e.getMessage());
-		} else {
-			throw new RepositoryException(e.getMessage());
 		}
 	}
 
@@ -77,7 +56,7 @@ public class PessoaRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Pessoa> getPessoas() {
+	public List<Pessoa> listar() {
 		entityManager = Uteis.jpaEntityManager();
 		Query query = entityManager.createQuery("select obj from br.com.codersistemas.model.entity.Pessoa obj inner join fetch obj.usuario usu ");
 		return query.getResultList();
@@ -107,4 +86,24 @@ public class PessoaRepository {
 		}
 		return null;
 	}
+	
+	private void tratarExcessaoRepositorio(Exception e) throws RepositoryException {
+		if (e instanceof PersistenceException) {
+			Throwable cause = e.getCause();
+			if (cause instanceof ConstraintViolationException) {
+				ConstraintViolationException ce = (ConstraintViolationException) cause;
+				try {
+					Configuration config = new PropertiesConfiguration("classpath:constraintsMessages.properties");
+					String mensagemConstraint = config.getString(ce.getConstraintName());
+					throw new RepositoryException(mensagemConstraint);
+				} catch (ConfigurationException constrEx) {
+					constrEx.printStackTrace();
+				}
+			}
+			throw new RepositoryException(e.getMessage());
+		} else {
+			throw new RepositoryException(e.getMessage());
+		}
+	}
+
 }

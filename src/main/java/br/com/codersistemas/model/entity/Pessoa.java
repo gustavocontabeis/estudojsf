@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
@@ -29,6 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity(name="pessoa")
+@EntityListeners(value=PessoaEvents.class)
 @Table(uniqueConstraints={
 		@UniqueConstraint(name="uk_pessoa_cpf", columnNames={"cpf"}),
 		@UniqueConstraint(name="uk_pessoa_email", columnNames={"email"}),

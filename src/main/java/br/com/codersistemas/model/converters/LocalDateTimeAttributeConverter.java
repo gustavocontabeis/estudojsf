@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @Converter(autoApply = true)
 public class LocalDateTimeAttributeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 	
-	private Logger log = LoggerFactory.getLogger("xxxxx");
+	private Logger log = LoggerFactory.getLogger(LocalDateTimeAttributeConverter.class);
  
     //TRANSFORMA EM Timestamp NA HORA DE PERSISTIR NO BANCO DE DADOS
     @Override

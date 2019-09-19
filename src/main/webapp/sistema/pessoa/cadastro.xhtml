@@ -52,17 +52,17 @@
 							<p:outputLabel value="Endereço" for="endereco" />
 							<p:inputText id="endereco" maxlength="200" value="#{cadastrarPessoaController.obj.endereco}" required="true" requiredMessage="O endereço é de preenchimento obrigatório" />
 							
-							<p:outputLabel value="Data do Cadastro" for="dataCadastro" rendered="true" />
-							<p:inputText id="dataCadastro" maxlength="200" value="#{cadastrarPessoaController.obj.dataCadastro}" rendered="true">
-								<f:converter converterId="br.com.codersistemas.uteis.LocalDateTimeConverter" />
-							</p:inputText>
-							
 							<p:outputLabel id="lbLogin" value="Login" for="login" />
 							<p:inputText id="login" maxlength="70" value="#{cadastrarPessoaController.obj.usuario.login}" required="true" requiredMessage="O Login é de preenchimento obrigatório" />
 							
 							<p:outputLabel id="lbSenha" value="Senha" for="senha" />
 							<h:inputSecret id="senha" maxlength="70" value="#{cadastrarPessoaController.obj.usuario.senha}" required="true" requiredMessage="A senha é de preenchimento obrigatória" styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
 	
+							<p:outputLabel value="Data do Cadastro" for="dataCadastro" rendered="true" />
+							<p:inputText id="dataCadastro" maxlength="200" value="#{cadastrarPessoaController.obj.dataCadastro}" readonly="true">
+								<format:LocalDateTimeConverter pattern = "dd/MM/yyyy HH:mm:ss"/>
+							</p:inputText>
+							
 		        		</p:panelGrid>
 		        		
 		        		<h:inputHidden id="usuario_id" value="#{cadastrarPessoaController.obj.usuario.id}" />

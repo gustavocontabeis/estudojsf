@@ -1,4 +1,4 @@
-package br.com.codersistemas.view.controller;
+package br.com.codersistemas.view.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -55,7 +55,7 @@ public class CadastrarPessoaController extends CrudController {
 	
 	@Override
 	public String novo() {
-		LOG.info("novo 2");
+		LOG.info("novo");
 		obj = new Pessoa();
 		obj.setUsuario(new Usuario());
 		return "cadastro.xhtml";
@@ -66,8 +66,6 @@ public class CadastrarPessoaController extends CrudController {
 		LOG.info("salvar");
 		try {
 			boolean cadastro = obj.getId() == null;
-			if(cadastro)
-				obj.setDataCadastro(LocalDateTime.now());
 			pessoaRepository.salvar(obj);
 			Uteis.mensagemInfo("Registro " + (cadastro?"cadastrado":"alterado") + " com sucesso");
 		} catch (AppException e) {
@@ -96,7 +94,11 @@ public class CadastrarPessoaController extends CrudController {
 	public void cancelar(ActionEvent evt) {
 		try {
 			LOG.info("cancelar");
-			obj = pessoaRepository.buscar(this.obj.getId());
+			if(this.obj.getId() != null) {
+				obj = pessoaRepository.buscar(this.obj.getId());
+			} else {
+				novo();
+			}
 		} catch (AppException e) {
 			mensagem(e);
 		}

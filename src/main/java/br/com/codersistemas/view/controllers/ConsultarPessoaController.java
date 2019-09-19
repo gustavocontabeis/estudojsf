@@ -1,4 +1,4 @@
-package br.com.codersistemas.view.controller;
+package br.com.codersistemas.view.controllers;
 
 import java.io.Serializable;
 import java.util.List;
@@ -37,7 +37,7 @@ public class ConsultarPessoaController implements Serializable {
  
 	@PostConstruct
 	public void init(){
-		this.list = pessoaRepository.getPessoas();
+		this.list = pessoaRepository.listar();
 	}
 	
 }

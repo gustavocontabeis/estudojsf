@@ -1,4 +1,4 @@
-package br.com.codersistemas.view.controller;
+package br.com.codersistemas.view.controllers;
 
 import javax.faces.event.ActionEvent;
 
