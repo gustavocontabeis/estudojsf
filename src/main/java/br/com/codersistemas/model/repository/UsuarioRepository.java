@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import br.com.codersistemas.exceptions.RepositoryException;
+import br.com.codersistemas.model.entity.Pessoa;
 import br.com.codersistemas.model.entity.Usuario;
 import br.com.codersistemas.uteis.Uteis;
 
@@ -41,4 +43,17 @@ public class UsuarioRepository implements Serializable {
 		}
 
 	}
+	
+	public Usuario buscar(Long id) throws RepositoryException {
+		try {
+			jpaEntityManager = Uteis.jpaEntityManager();
+			Usuario find = jpaEntityManager.find(Usuario.class, id);
+			if (find != null) 
+				return find;
+		} catch (Exception e) {
+			//tratarExcessaoRepositorio(e);
+		}
+		return null;
+	}
+
 }

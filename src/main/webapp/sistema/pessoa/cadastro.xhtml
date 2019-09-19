@@ -55,16 +55,14 @@
 							<p:outputLabel id="lbLogin" value="Login" for="login" />
 							<p:inputText id="login" maxlength="70" value="#{cadastrarPessoaController.obj.usuario.login}" required="true" requiredMessage="O Login é de preenchimento obrigatório" />
 							
-							<p:outputLabel id="lbSenha" value="Senha" for="senha" />
-							<h:inputSecret id="senha" maxlength="70" value="#{cadastrarPessoaController.obj.usuario.senha}" required="true" requiredMessage="A senha é de preenchimento obrigatória" styleClass="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
-	
 							<p:outputLabel value="Data do Cadastro" for="dataCadastro" rendered="true" />
-							<p:inputText id="dataCadastro" maxlength="200" value="#{cadastrarPessoaController.obj.dataCadastro}" readonly="true">
+							<p:inputText id="dataCadastro" maxlength="200" value="#{cadastrarPessoaController.obj.dataCadastro}" readonly="false">
 								<format:LocalDateTimeConverter pattern = "dd/MM/yyyy HH:mm:ss"/>
 							</p:inputText>
 							
 		        		</p:panelGrid>
 		        		
+		        		<h:inputHidden id="senha" value="#{cadastrarPessoaController.obj.usuario.senha}" />
 		        		<h:inputHidden id="usuario_id" value="#{cadastrarPessoaController.obj.usuario.id}" />
 		        		<h:inputHidden id="usuario_exclusao" value="#{cadastrarPessoaController.obj.usuario.exclusao}" rendered="true" >
 		        			<format:LocalDateTimeConverter pattern = "dd/MM/yyyy HH:mm:ss"/>
