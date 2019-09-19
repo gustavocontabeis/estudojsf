@@ -30,8 +30,6 @@ public class PessoaRepository {
 				atualizar(pessoa);
 			} else {
 				entityManager = Uteis.jpaEntityManager();
-				Usuario usuario = entityManager.find(Usuario.class, pessoa.getUsuario().getId());
-				pessoa.setUsuario(usuario);
 				entityManager.persist(pessoa);
 				entityManager.flush();
 			}
@@ -69,7 +67,6 @@ public class PessoaRepository {
 			find.setEndereco(pessoaModel.getEndereco());
 			find.setNome(pessoaModel.getNome());
 			find.setCpf(pessoaModel.getCpf());
-			find.setOrigemCadastro(pessoaModel.getOrigemCadastro());
 			find.setSexo(pessoaModel.getSexo());
 			find.setId(pessoaModel.getId());
 			find.setUsuario(pessoaModel.getUsuario());
@@ -82,7 +79,7 @@ public class PessoaRepository {
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> getPessoas() {
 		entityManager = Uteis.jpaEntityManager();
-		Query query = entityManager.createQuery("select obj from br.com.codersistemas.model.entity.Pessoa obj");
+		Query query = entityManager.createQuery("select obj from br.com.codersistemas.model.entity.Pessoa obj inner join fetch obj.usuario usu ");
 		return query.getResultList();
 	}
 

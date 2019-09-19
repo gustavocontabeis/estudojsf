@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.codersistemas.annotations.AppLogger;
 import br.com.codersistemas.model.entity.Usuario;
 import br.com.codersistemas.model.repository.UsuarioRepository;
 import br.com.codersistemas.uteis.Uteis;
@@ -18,6 +19,10 @@ import br.com.codersistemas.uteis.Uteis;
 public class UsuarioController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	//@Inject
+	//@AppLogger
+	private java.util.logging.Logger LOG;
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
@@ -44,6 +49,8 @@ public class UsuarioController implements Serializable {
 	}
 
 	public String efetuarLogin() {
+		
+		//LOG.info("efetuarLogin");
 		
 		obj.setLogin("admin");
 		obj.setSenha("123");

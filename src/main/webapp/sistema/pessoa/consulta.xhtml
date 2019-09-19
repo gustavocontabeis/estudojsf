@@ -19,7 +19,7 @@
 		
 			<p:toolbar id="tb">
 				<f:facet name="right">
-					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" actionListener="#{cadastrarPessoaController.novo}" update="@form" process="@this" />
+					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" action="#{cadastrarPessoaController.novo}" update="@form" process="@this" />
 					<p:commandButton value="Exportar" title="Exportar para excel" id="exportar" icon="fa fa-file-excel-o" ajax="false">
 						 <p:dataExporter type="xls" target="list" fileName="export" />
 					</p:commandButton>
@@ -67,10 +67,6 @@
  
         				 <p:column headerText="Endereço">
             				<h:outputText value="#{item.endereco}" />
-        				 </p:column>
- 
-        				 <p:column headerText="Origem">
-            				<h:outputText value="#{item.origemCadastro}" />
         				 </p:column>
  
         				 <p:column headerText="Usuário">

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -13,8 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.primefaces.model.UploadedFile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,6 +23,8 @@ import org.xml.sax.SAXException;
 import br.com.codersistemas.annotations.AppLogger;
 import br.com.codersistemas.exceptions.AppException;
 import br.com.codersistemas.model.entity.Pessoa;
+import br.com.codersistemas.model.entity.Sexo;
+import br.com.codersistemas.model.entity.Usuario;
 import br.com.codersistemas.model.repository.PessoaRepository;
 import br.com.codersistemas.uteis.Uteis;
 
@@ -46,18 +47,24 @@ public class CadastrarPessoaController extends CrudController {
 
 	private UploadedFile file;
 	
+	@PostConstruct
+	public void init() {
+		LOG.info("inicio");
+		novo();
+	}
+	
 	@Override
-	public void novo(ActionEvent evt) {
-		LOG.info("novo");
+	public String novo() {
+		LOG.info("novo 2");
 		obj = new Pessoa();
+		obj.setUsuario(new Usuario());
+		return "cadastro.xhtml";
 	}
 	
 	@Override
 	public void salvar(ActionEvent evt) {
 		LOG.info("salvar");
 		try {
-			obj.setUsuario(this.usuarioController.getUsuarioSession());
-			obj.setOrigemCadastro("I");
 			boolean cadastro = obj.getId() == null;
 			if(cadastro)
 				obj.setDataCadastro(LocalDateTime.now());
@@ -79,6 +86,7 @@ public class CadastrarPessoaController extends CrudController {
 		try {
 			LOG.info("excluir");
 			pessoaRepository.excluir(this.obj.getId());
+			novo();
 		} catch (AppException e) {
 			mensagem(e);
 		}
@@ -104,10 +112,6 @@ public class CadastrarPessoaController extends CrudController {
 	public String selecionar(Object pessoa) {
 		LOG.log(Level.INFO, String.format("selecionar %s", pessoa));
 		this.obj = (Pessoa) pessoa;
-		this.obj.setSexo( this.obj.getSexo().equals("Masculino")? "M" : "F" );
-		
-		//#{request.contextPath}/sistema/pessoa/cadastro.xhtml
-		//return "/estudojsf/sistema/pessoa/cadastro.xhtml"; 
 		return "cadastro.xhtml";//?faces-redirect=true
 	}
 
@@ -142,8 +146,7 @@ public class CadastrarPessoaController extends CrudController {
 					newPessoaModel.setEmail(email);
 					newPessoaModel.setEndereco(endereco);
 					newPessoaModel.setNome(nome);
-					newPessoaModel.setOrigemCadastro("X");
-					newPessoaModel.setSexo(sexo);
+					newPessoaModel.setSexo(Sexo.valueOf(sexo));
 
 					//SALVANDO UM REGISTRO QUE VEIO DO ARQUIVO XML
 					pessoaRepository.salvar(newPessoaModel);

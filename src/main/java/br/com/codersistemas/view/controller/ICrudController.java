@@ -4,7 +4,7 @@ import javax.faces.event.ActionEvent;
 
 public interface ICrudController {
 	
-	void novo(ActionEvent evt);
+	String novo();
 	void salvar(ActionEvent evt);
 	void excluir(ActionEvent evt);
 	void cancelar(ActionEvent evt);

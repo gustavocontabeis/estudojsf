@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.codersistemas.model.entity.Pessoa;
+import br.com.codersistemas.model.entity.Sexo;
 import br.com.codersistemas.model.entity.Usuario;
 
 public class PessoaRepositoryTest {
@@ -134,8 +135,7 @@ public class PessoaRepositoryTest {
 			p.setExclusao(null);
 			p.setId(null);
 			p.setNome("Nome "+i);
-			p.setOrigemCadastro("I");
-			p.setSexo("M");
+			p.setSexo(Sexo.MASCULINO);
 			p.setUsuario(new Usuario());
 			p.getUsuario().setId(null);
 			p.getUsuario().setExclusao(null);

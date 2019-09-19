@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,8 +49,9 @@ public class Pessoa implements IEntity {
 	@Column(length=20, nullable=false)
 	private String cpf;
  
-	@Column(length=100, nullable=false)
-	private String sexo;
+	@Enumerated(EnumType.STRING)
+	@Column(length=10, nullable=false)
+	private Sexo sexo;
  
 	@Column(name="data_cadastro", nullable=false)
 	private LocalDateTime dataCadastro;
@@ -62,11 +65,8 @@ public class Pessoa implements IEntity {
 	@Column(length=200)
 	private String endereco;
  
-	@Column(name="origem_cadastro", length=20)
-	private String origemCadastro;
- 
-	@OneToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="id_usuario_cadastro", foreignKey = @ForeignKey(value=ConstraintMode.CONSTRAINT, name="fk_pessoa_usuario"))
+	@OneToOne(cascade= {CascadeType.ALL, CascadeType.REMOVE})
+	@JoinColumn(name="id_usuario", foreignKey = @ForeignKey(value=ConstraintMode.CONSTRAINT, name="fk_pessoa_usuario"))
 	private Usuario usuario;
  
 	@Override
