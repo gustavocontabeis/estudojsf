@@ -42,6 +42,7 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 	}
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public void salvar(ActionEvent evt) {
 		getLog().info("salvar");
 		try {
@@ -60,6 +61,7 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 	}
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public void excluir(ActionEvent evt) {
 		try {
 			getLog().info("excluir");
@@ -72,6 +74,7 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void cancelar(ActionEvent evt) {
 		try {
 			getLog().info("cancelar");
@@ -92,6 +95,7 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 	}
 	
 	@Override
+	@SuppressWarnings({ "unchecked" })
 	public String selecionar(Object obj) {
 		getLog().log(Level.INFO, String.format("selecionar %s", obj));
 		this.obj = (T) obj;
@@ -102,8 +106,10 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 
 	protected abstract void instanciarObjeto();
 	
+	@SuppressWarnings("rawtypes")
 	protected abstract BaseRepository getRepository();
 	
+	@SuppressWarnings("hiding")
 	protected <T> T clonar(T t) {
 		try {
 			return ReflectionUtils.cloneEntity(t);

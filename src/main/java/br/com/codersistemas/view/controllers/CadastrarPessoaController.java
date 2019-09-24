@@ -1,13 +1,9 @@
 package br.com.codersistemas.view.controllers;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.xml.parsers.DocumentBuilder;
@@ -42,6 +38,7 @@ public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 	private UsuarioController usuarioController;
 
 	@Inject
+	@SuppressWarnings("rawtypes")
 	private PessoaRepository repository;
 
 	private UploadedFile file;
@@ -52,6 +49,7 @@ public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 	}
 	
 	@Override
+	@SuppressWarnings("rawtypes")
 	protected BaseRepository getRepository(){
 		return repository;
 	}
