@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 		@UniqueConstraint(name="uk_pessoa_cpf", columnNames={"cpf"}),
 		@UniqueConstraint(name="uk_pessoa_email", columnNames={"email"}),
 })
-public class Pessoa implements IEntity {
+public class Pessoa implements IEntity { 
  
 	private static final long serialVersionUID = 1L;
 	

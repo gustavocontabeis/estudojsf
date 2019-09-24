@@ -25,25 +25,25 @@ import br.com.codersistemas.exceptions.AppException;
 import br.com.codersistemas.model.entity.Pessoa;
 import br.com.codersistemas.model.entity.Sexo;
 import br.com.codersistemas.model.entity.Usuario;
+import br.com.codersistemas.model.repository.BaseRepository;
 import br.com.codersistemas.model.repository.PessoaRepository;
 import br.com.codersistemas.uteis.Uteis;
 
 @RequestScoped
 @Named(value="cadastrarPessoaController")
-public class CadastrarPessoaController extends CrudController {
+public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 	
 	@Inject
 	@AppLogger
 	private java.util.logging.Logger LOG;
 
-	@Inject
 	private Pessoa obj;
 
 	@Inject
 	private UsuarioController usuarioController;
 
 	@Inject
-	private PessoaRepository pessoaRepository;
+	private PessoaRepository repository;
 
 	private UploadedFile file;
 	
@@ -66,8 +66,8 @@ public class CadastrarPessoaController extends CrudController {
 		LOG.info("salvar");
 		try {
 			boolean cadastro = obj.getId() == null;
-			pessoaRepository.salvar(obj);
-			Uteis.mensagemInfo("Registro " + (cadastro?"cadastrado":"alterado") + " com sucesso");
+			repository.salvar(obj);
+			mensagemOK("Registro " + (cadastro?"cadastrado":"alterado") + " com sucesso");
 		} catch (AppException e) {
 			mensagem(e);
 		}
@@ -77,13 +77,15 @@ public class CadastrarPessoaController extends CrudController {
 	public void clonar(ActionEvent evt) {
 		LOG.severe(String.format("clonar %s", obj.toString()));
 		obj = clonar(obj);
+		mensagemOK("Clonagem concluída com sucesso.");
 	}
 	
 	@Override
 	public void excluir(ActionEvent evt) {
 		try {
 			LOG.info("excluir");
-			pessoaRepository.excluir(this.obj.getId());
+			repository.excluir(Pessoa.class, this.obj.getId());
+			mensagemOK("Registro excluído com sucesso.");
 			novo();
 		} catch (AppException e) {
 			mensagem(e);
@@ -95,7 +97,7 @@ public class CadastrarPessoaController extends CrudController {
 		try {
 			LOG.info("cancelar");
 			if(this.obj.getId() != null) {
-				obj = pessoaRepository.buscar(this.obj.getId());
+				obj = (Pessoa) repository.buscar(this.obj.getId());
 			} else {
 				novo();
 			}
@@ -151,7 +153,7 @@ public class CadastrarPessoaController extends CrudController {
 					newPessoaModel.setSexo(Sexo.valueOf(sexo));
 
 					//SALVANDO UM REGISTRO QUE VEIO DO ARQUIVO XML
-					pessoaRepository.salvar(newPessoaModel);
+					repository.salvar(newPessoaModel);
 				}
 			}
 			Uteis.mensagemInfo("Registros cadastrados com sucesso!");

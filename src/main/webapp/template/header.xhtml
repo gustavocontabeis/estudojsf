@@ -6,7 +6,7 @@
 	
 	<h:form id="formMenu">
 		<p:menubar id="menuBar">
-			<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
+			<p:menuitem value="Home" icon="ui-icon-home" url="#{request.contextPath}/home.xhtml" />
 			<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/pessoa/cadastro.xhtml" />
 			<p:menuitem value="Consulta" icon="fa fa-fw fa-search" url="#{request.contextPath}/sistema/pessoa/consulta.xhtml" />
 			<f:facet name="options">

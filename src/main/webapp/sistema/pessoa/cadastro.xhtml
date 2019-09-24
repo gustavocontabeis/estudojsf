@@ -15,7 +15,7 @@
 		<p:tabView id="tv">
 			<p:tab id="tv1" title="Cadastro de Pessoa">
 				<h:form id="form-cadastro">
-					<p:messages id="menssagens" showSummary="false" showDetail="true" />
+					<p:growl id="menssagens" showSummary="false" showDetail="true" />
 					<p:toolbar id="tb">
 						<f:facet name="right">
 							<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" action="#{cadastrarPessoaController.novo}" update="@form" rendered="#{not empty cadastrarPessoaController.obj.id}" process="@this">
@@ -38,7 +38,7 @@
 		        		<p:panelGrid columns="4" columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
 		        		
 							<p:outputLabel id="lbId" value="Código" for="id" />
-							<p:inputText id="id" value="#{cadastrarPessoaController.obj.id}" required="false" />
+							<p:inputText id="id" value="#{cadastrarPessoaController.obj.id}" required="false" readonly="false" />
 	
 							<p:outputLabel id="lbNome" value="Nome" for="nome" />
 							<p:inputText id="nome" maxlength="70" value="#{cadastrarPessoaController.obj.nome}" required="true" requiredMessage="O nome é de preenchimento obrigatório" />
