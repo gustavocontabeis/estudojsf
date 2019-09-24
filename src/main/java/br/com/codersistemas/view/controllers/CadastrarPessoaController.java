@@ -3,6 +3,7 @@ package br.com.codersistemas.view.controllers;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -37,8 +38,6 @@ public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 	@AppLogger
 	private java.util.logging.Logger LOG;
 
-	private Pessoa obj;
-
 	@Inject
 	private UsuarioController usuarioController;
 
@@ -47,78 +46,16 @@ public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 
 	private UploadedFile file;
 	
-	@PostConstruct
-	public void init() {
-		LOG.info("inicio");
-		novo();
-	}
-	
-	@Override
-	public String novo() {
-		LOG.info("novo");
+	public void instanciarObjeto() {
 		obj = new Pessoa();
 		obj.setUsuario(new Usuario());
-		return "cadastro.xhtml";
 	}
 	
 	@Override
-	public void salvar(ActionEvent evt) {
-		LOG.info("salvar");
-		try {
-			boolean cadastro = obj.getId() == null;
-			repository.salvar(obj);
-			mensagemOK("Registro " + (cadastro?"cadastrado":"alterado") + " com sucesso");
-		} catch (AppException e) {
-			mensagem(e);
-		}
+	protected BaseRepository getRepository(){
+		return repository;
 	}
 	
-	@Override
-	public void clonar(ActionEvent evt) {
-		LOG.severe(String.format("clonar %s", obj.toString()));
-		obj = clonar(obj);
-		mensagemOK("Clonagem concluída com sucesso.");
-	}
-	
-	@Override
-	public void excluir(ActionEvent evt) {
-		try {
-			LOG.info("excluir");
-			repository.excluir(Pessoa.class, this.obj.getId());
-			mensagemOK("Registro excluído com sucesso.");
-			novo();
-		} catch (AppException e) {
-			mensagem(e);
-		}
-	}
-
-	@Override
-	public void cancelar(ActionEvent evt) {
-		try {
-			LOG.info("cancelar");
-			if(this.obj.getId() != null) {
-				obj = (Pessoa) repository.buscar(this.obj.getId());
-			} else {
-				novo();
-			}
-		} catch (AppException e) {
-			mensagem(e);
-		}
-	}
-	
-	@Override
-	public String pesquisar() {
-		LOG.info("pesquisar");
-		return "consulta.xhtml";
-	}
-
-	@Override
-	public String selecionar(Object pessoa) {
-		LOG.log(Level.INFO, String.format("selecionar %s", pessoa));
-		this.obj = (Pessoa) pessoa;
-		return "cadastro.xhtml";//?faces-redirect=true
-	}
-
 	public void uploadRegistros() {
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -183,6 +120,11 @@ public class CadastrarPessoaController extends CrudController<Pessoa, Long> {
 
 	public void setObj(Pessoa pessoaModel) {
 		this.obj = pessoaModel;
+	}
+
+	@Override
+	protected Logger getLog() {
+		return LOG;
 	}
 
 }
