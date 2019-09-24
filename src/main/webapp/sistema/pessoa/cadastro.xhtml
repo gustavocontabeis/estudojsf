@@ -23,7 +23,13 @@
 							</p:commandButton>
 							<p:commandButton value="Salvar" title="Salvar" id="salvar" icon="fa fa-fw fa-save" actionListener="#{cadastrarPessoaController.salvar}" update="@form" />
 							<p:commandButton value="Clonar" title="Clonar" id="clonar" icon="fa fa-fw fa-copy"  actionListener="#{cadastrarPessoaController.clonar}" partialSubmit="true" process="@form" update="@form" />
-							<p:commandButton value="Excluir" title="Excluir" id="excluir" icon="fa fa-fw fa-trash" actionListener="#{cadastrarPessoaController.excluir}" update="@form" partialSubmit="true" process="@this id" />
+							<p:commandButton value="Excluir" title="Excluir" id="excluir" icon="fa fa-fw fa-trash" actionListener="#{cadastrarPessoaController.excluir}" update="@form" partialSubmit="true" process="@this id">
+								<p:confirm header="Exclusão" message="Tem certesa que deseja excluir o registro?" icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
+							 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+						    </p:confirmDialog>
 							<p:commandButton value="Cancelar" title="Cancelar" id="cancelar" icon="fa fa-fw fa-close" actionListener="#{cadastrarPessoaController.cancelar}" update="@form" />
 							<p:commandButton value="Pesquisar" title="Pesquisar" id="pesquisar" icon="fa fa-fw fa-search" action="#{cadastrarPessoaController.pesquisar}" update="@form" immediate="true" />
 						</f:facet>
