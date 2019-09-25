@@ -9,10 +9,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.codersistemas.model.entity.Album;
-import br.com.codersistemas.model.entity.Pessoa;
-import br.com.codersistemas.model.repository.AlbumRepository;
-import br.com.codersistemas.model.repository.PessoaRepository;
+import br.com.codersistemas.model.entity.Letra;
+import br.com.codersistemas.model.repository.LetraRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,20 +20,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor 
 @NoArgsConstructor 
-@Named(value="consultarAlbumController")
+@Named(value="consultarLetraController")
 @ViewScoped
-public class ConsultarAlbumController implements Serializable {
+public class ConsultarLetraController implements Serializable {
  
 	private static final long serialVersionUID = 1L;
  
 	@Inject	transient 
-	private Pessoa obj;
+	private Letra obj;
  
 	@Produces 
-	private List<Album> list;
+	private List<Letra> list;
  
 	@Inject transient
-	private AlbumRepository<Album, Long> repository;
+	private LetraRepository<Letra, Long> repository;
  
 	@PostConstruct
 	public void init(){

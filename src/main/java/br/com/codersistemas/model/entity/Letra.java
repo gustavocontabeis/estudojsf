@@ -2,6 +2,7 @@ package br.com.codersistemas.model.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,12 +35,12 @@ public class Letra implements IEntity {
 	@Column(name = "id_letra")
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade= {CascadeType.DETACH})
 	@JoinColumn(name="id_album")
 	private Album album;
  
 	@Column(length=10000, nullable=false)
-	private String portuges;
+	private String portugues;
 	
 	@Column(length=10000, nullable=false)
 	private String ingles;

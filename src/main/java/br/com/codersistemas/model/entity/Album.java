@@ -3,6 +3,7 @@ package br.com.codersistemas.model.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -36,7 +37,7 @@ public class Album implements IEntity {
 	@Column(length=150, nullable=false)
 	private String nome;
 	
-	@OneToMany()
+	@OneToMany(cascade= {CascadeType.ALL}, mappedBy="album")
 	private List<Letra> letras;
 	
 	@Column(name="data_exclusao", nullable=true)

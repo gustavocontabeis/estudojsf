@@ -32,8 +32,11 @@ public abstract class CrudController<T extends IEntity, I extends Serializable> 
 	public void init() {
 		getLog().info("inicio");
 		novo();
+		initApos();
 	}
 	
+	protected void initApos() {	}
+
 	@Override
 	public String novo() {
 		getLog().info("novo");;

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:format="http://codersistemas.com.br/LocalDateTimeConverter">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/layoutBase.xhtml">
+ 
+	<ui:define name="content">
+ 		
+		<h:form style="margin:auto;margin-left:2%;" id="form-consulta">
+		
+			<p:toolbar id="tb">
+				<f:facet name="right">
+					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" action="#{cadastrarLetraController.novo}" update="@form" process="@this" />
+					<p:commandButton value="Exportar" title="Exportar para excel" id="exportar" icon="fa fa-file-excel-o" ajax="false">
+						 <p:dataExporter type="xls" target="list" fileName="export" />
+					</p:commandButton>
+				</f:facet>
+			</p:toolbar>
+ 			
+ 			<p:spacer />
+			
+			<p:dataTable id="list"
+						 var="item" 
+						 value="#{consultarLetraController.list}" 
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,30,50,100,500"
+                         paginatorPosition="top"
+                         reflow="true"
+                         emptyMessage="Nenhum registro encontrado.">
+ 
+						 <p:column headerText="Código">
+            				<h:outputText value="#{item.id}" />
+        				 </p:column>
+ 
+        				 <p:column headerText="Nome">
+            				<h:outputText value="#{item.ingles}" />
+        				 </p:column>
+        				 
+        				 <p:column headerText="Ações">
+ 							<p:commandButton id="alterar" title="Alterar" icon="fa fa-fw fa-pencil" action="#{cadastrarLetraController.selecionar(item)}" immediate="true" />
+        				 </p:column>
+ 
+			</p:dataTable>
+ 
+		</h:form>
+ 
+	</ui:define>
+ 
+</ui:composition>
+</html>

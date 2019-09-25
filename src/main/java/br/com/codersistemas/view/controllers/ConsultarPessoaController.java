@@ -34,12 +34,12 @@ public class ConsultarPessoaController implements Serializable {
  
 	@SuppressWarnings("rawtypes")
 	@Inject transient
-	private PessoaRepository pessoaRepository;
+	private PessoaRepository repository;
  
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init(){
-		this.list = pessoaRepository.listar();
+		this.list = repository.listar();
 	}
 	
 }

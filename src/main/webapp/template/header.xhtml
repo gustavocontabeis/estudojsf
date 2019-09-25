@@ -6,11 +6,21 @@
 	
 	<h:form id="formMenu">
 		<p:menubar id="menuBar">
+			
 			<p:menuitem value="Home" icon="ui-icon-home" url="#{request.contextPath}/home.xhtml" />
-			<p:menuitem value="Album Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/album/cadastro.xhtml" />
-			<p:menuitem value="Album Consulta" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/album/consulta.xhtml" />
-			<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/pessoa/cadastro.xhtml" />
-			<p:menuitem value="Consulta" icon="fa fa-fw fa-search" url="#{request.contextPath}/sistema/pessoa/consulta.xhtml" />
+			
+			<p:submenu label="Album" icon="pi pi-file">
+				<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/album/cadastro.xhtml" />
+				<p:menuitem value="Consulta" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/album/consulta.xhtml" />
+			</p:submenu>
+			<p:submenu label="Letra" icon="pi pi-file">
+				<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/letra/cadastro.xhtml" />
+				<p:menuitem value="Consulta" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/letra/consulta.xhtml" />
+			</p:submenu>
+			<p:submenu label="Pessoa" icon="pi pi-file">
+				<p:menuitem value="Cadastro" icon="fa fa-fw fa-file-text-o" url="#{request.contextPath}/sistema/pessoa/cadastro.xhtml" />
+				<p:menuitem value="Consulta" icon="fa fa-fw fa-search" url="#{request.contextPath}/sistema/pessoa/consulta.xhtml" />
+			</p:submenu>
 			<f:facet name="options">
 				<p:commandButton value="Sair" icon="fa fa-fw fa-sign-out" action="#{usuarioController.logout}" />
 			</f:facet>
