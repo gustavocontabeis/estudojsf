@@ -32,9 +32,11 @@ public class ConsultarPessoaController implements Serializable {
 	@Produces 
 	private List<Pessoa> list;
  
+	@SuppressWarnings("rawtypes")
 	@Inject transient
 	private PessoaRepository pessoaRepository;
  
+	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init(){
 		this.list = pessoaRepository.listar();

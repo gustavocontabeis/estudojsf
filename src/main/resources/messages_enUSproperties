@@ -1,0 +1,3 @@
+app.name=Sistema de cadastro de pessoas en_US
+
+build.version=${project.version}

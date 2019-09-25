@@ -14,10 +14,10 @@
 </h:head>
 
 <h:body style="display:flex;">
-	
+	<f:loadBundle basename="messages" var="msg"/>
 	<h:form id="f" style=" margin:auto;">
 		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
-		<p:panel id="panel-login-principal" header="Login" footer="Sistema de cadastro de pessoas">
+		<p:panel id="panel-login-principal" header="Login" footer="#{msgs['app.name']}" >
 			<h:panelGrid columns="2" cellpadding="10">
 				<p:graphicImage url="/resources/imagens/locked.png" />
 				<h:panelGrid columns="2" cellpadding="5">
