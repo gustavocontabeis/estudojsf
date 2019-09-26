@@ -2,6 +2,7 @@ package br.com.codersistemas.model.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
@@ -15,9 +16,12 @@ public class LetraRepository<Letra, Long> extends BaseRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Letra> listar() {
-		entityManager = Uteis.jpaEntityManager();
+		//setEntityManager(Uteis.jpaEntityManager());
+		EntityManager entityManager = getEntityManager();
 		Query query = entityManager.createQuery("select obj from br.com.codersistemas.model.entity.Letra obj inner join fetch obj.album alb");
-		return query.getResultList();
+		List resultList = query.getResultList();
+		//entityManager.close();
+		return resultList;
 	}
 
 	@Override

@@ -15,8 +15,7 @@ public class AlbumRepository<Album, Long> extends BaseRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Album> listar() {
-		entityManager = Uteis.jpaEntityManager();
-		Query query = entityManager.createQuery("select obj from br.com.codersistemas.model.entity.Album obj");
+		Query query = getEntityManager().createQuery("select obj from br.com.codersistemas.model.entity.Album obj");
 		return query.getResultList();
 	}
 

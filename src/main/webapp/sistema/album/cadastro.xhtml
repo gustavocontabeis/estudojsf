@@ -11,36 +11,36 @@
 <ui:composition template="/template/layoutBase.xhtml">
 
 	<ui:define name="content">
-		<ui:param name="action" value="#{cadastrarAlbumController}"></ui:param>
+		<ui:param name="controller" value="#{cadastrarAlbumController}"></ui:param>
 
 		<h:form id="form-cadastro">
 			<p:growl id="menssagens" showSummary="false" showDetail="true" />
 			<p:toolbar id="tb">
 				<f:facet name="right">
-					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" action="#{action.novo}" update="@form" rendered="#{not empty action.obj.id}" process="@this">
+					<p:commandButton value="Novo" title="Novo" id="novo" icon="fa fa-fw fa-plus" action="#{controller.novo}" update="@form" rendered="#{not empty controller.obj.id}" process="@this">
 						<p:resetInput target="@form" clearModel="" />
 					</p:commandButton>
-					<p:commandButton value="Salvar" title="Salvar" id="salvar" icon="fa fa-fw fa-save" actionListener="#{action.salvar}" update="@form" />
-					<p:commandButton value="Clonar" title="Clonar" id="clonar" icon="fa fa-fw fa-copy"  actionListener="#{action.clonar}" partialSubmit="true" process="@form" update="@form" />
-					<p:commandButton value="Excluir" title="Excluir" id="excluir" icon="fa fa-fw fa-trash" actionListener="#{action.excluir}" update="@form" partialSubmit="true" process="@this id">
+					<p:commandButton value="Salvar" title="Salvar" id="salvar" icon="fa fa-fw fa-save" actionListener="#{controller.salvar}" update="@form" />
+					<p:commandButton value="Clonar" title="Clonar" id="clonar" icon="fa fa-fw fa-copy"  actionListener="#{controller.clonar}" partialSubmit="true" process="@form" update="@form" />
+					<p:commandButton value="Excluir" title="Excluir" id="excluir" icon="fa fa-fw fa-trash" actionListener="#{controller.excluir}" update="@form" partialSubmit="true" process="@this id">
 						<p:confirm header="Exclusão" message="Tem certesa que deseja excluir o registro?" icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 					 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 				        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 				        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				    </p:confirmDialog>
-					<p:commandButton value="Cancelar" title="Cancelar" id="cancelar" icon="fa fa-fw fa-close" actionListener="#{action.cancelar}" update="@form" />
-					<p:commandButton value="Pesquisar" title="Pesquisar" id="pesquisar" icon="fa fa-fw fa-search" action="#{action.pesquisar}" update="@form" immediate="true" />
+					<p:commandButton value="Cancelar" title="Cancelar" id="cancelar" icon="fa fa-fw fa-close" actionListener="#{controller.cancelar}" update="@form" />
+					<p:commandButton value="Pesquisar" title="Pesquisar" id="pesquisar" icon="fa fa-fw fa-search" action="#{controller.pesquisar}" update="@form" immediate="true" />
 				</f:facet>
 			</p:toolbar>
 			<div class="ui-fluid">
         		<p:panelGrid columns="2" columnClasses="ui-g-6 ui-md-6,ui-g-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
         		
 					<p:outputLabel id="lbId" value="Código" for="id" />
-					<p:inputText id="id" value="#{action.obj.id}" required="false" readonly="false" />
+					<p:inputText id="id" value="#{controller.obj.id}" required="false" readonly="false" />
 
 					<p:outputLabel id="lbNome" value="Nome" for="nome" />
-					<p:inputText id="nome" maxlength="70" value="#{action.obj.nome}" required="true" requiredMessage="O nome é de preenchimento obrigatório" />
+					<p:inputText id="nome" maxlength="70" value="#{controller.obj.nome}" required="true" requiredMessage="O nome é de preenchimento obrigatório" />
 					
         		</p:panelGrid>
         		

@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +21,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString(exclude="letras")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -37,7 +40,7 @@ public class Album implements IEntity {
 	@Column(length=150, nullable=false)
 	private String nome;
 	
-	@OneToMany(cascade= {CascadeType.ALL}, mappedBy="album")
+	@OneToMany(cascade= {CascadeType.ALL}, mappedBy="album", fetch=FetchType.LAZY)
 	private List<Letra> letras;
 	
 	@Column(name="data_exclusao", nullable=true)

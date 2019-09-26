@@ -2,6 +2,7 @@ package br.com.codersistemas.model.repository;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -18,12 +19,15 @@ import br.com.codersistemas.uteis.Uteis;
 
 public abstract class BaseRepository<T extends IEntity, I extends Serializable> {
 	
-	protected EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	private Class<T> persistedClass;
 	
+	public abstract List<T> listar();
+	
 	public void salvar(T entity) throws RepositoryException {
 		try {
+			entity = salvarAntes(entity);
 			if (entity.getId() != null) {
 				atualizar(entity);
 			} else {
@@ -36,6 +40,11 @@ public abstract class BaseRepository<T extends IEntity, I extends Serializable> 
 		}
 	}
 
+	protected T salvarAntes(T entity) {
+		return entity;
+	}
+
+	@SuppressWarnings("unchecked")
 	private void atualizar(T entity) throws RepositoryException {
 		try {
 			entityManager = Uteis.jpaEntityManager();
@@ -57,6 +66,7 @@ public abstract class BaseRepository<T extends IEntity, I extends Serializable> 
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void excluir(Class classe, I id) throws RepositoryException {
 		try {
 			entityManager = Uteis.jpaEntityManager();
@@ -82,6 +92,7 @@ public abstract class BaseRepository<T extends IEntity, I extends Serializable> 
 		return null;
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected abstract Class getClasse();
 
 	protected void tratarExcessaoRepositorio(Exception e) throws RepositoryException {
@@ -101,6 +112,10 @@ public abstract class BaseRepository<T extends IEntity, I extends Serializable> 
 		} else {
 			throw new RepositoryException(e.getMessage());
 		}
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager != null ? entityManager : Uteis.jpaEntityManager();
 	}
 
 }

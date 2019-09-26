@@ -34,21 +34,29 @@
 				</f:facet>
 			</p:toolbar>
 			<div class="ui-fluid">
-        		<p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12,ui-g-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+        		<p:panelGrid columns="4" columnClasses="ui-g-3 ui-md-3,ui-g-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
         		
+					<h:column/>
 					<p:outputLabel id="lbId" value="Código" for="id" />
-					<p:inputText id="id" value="#{action.obj.id}" required="false" readonly="false" />
-					
 					<p:outputLabel id="lb-album" value="Album" for="album" />
+					<h:column/>
+					
+					<h:column/>
+					<p:inputText id="id" value="#{action.obj.id}" required="false" readonly="false" />
 					<p:selectOneMenu id="album" value="#{action.obj.album}" converter="entityConverter" validator="entityValidator" required="true">
 						<f:selectItems value="#{action.albuns}" var="i" itemValue="#{i}" itemLabel="#{i.nome}" />
 					</p:selectOneMenu>
-
-					<p:outputLabel id="lbPortugues" value="Portugues" for="portugues" />
-					<p:inputText id="portugues" maxlength="70" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
+					<h:column/>
 					
+					<h:column/>
+					<p:outputLabel id="lbPortugues" value="Portugues" for="portugues" />
 					<p:outputLabel id="lbIngles" value="Ingles" for="ingles" />
-					<p:inputText id="ingles" maxlength="70" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
+					<h:column/>
+					
+					<h:column/>
+					<p:inputTextarea id="portugues" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
+					<p:inputTextarea id="ingles" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
+					<h:column/>
 					
         		</p:panelGrid>
         		
