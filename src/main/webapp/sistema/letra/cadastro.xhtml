@@ -54,8 +54,13 @@
 					<h:column/>
 					
 					<h:column/>
-					<p:inputTextarea id="portugues" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
-					<p:inputTextarea id="ingles" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
+					<p:inputText id="nomePT" value="#{action.obj.nomePT}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
+					<p:inputText id="nomeEN" value="#{action.obj.nomeEN}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
+					<h:column/>
+					
+					<h:column/>
+					<p:editor id="portugues" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
+					<p:editor id="ingles" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
 					<h:column/>
 					
         		</p:panelGrid>

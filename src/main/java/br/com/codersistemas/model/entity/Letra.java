@@ -39,6 +39,12 @@ public class Letra implements IEntity {
 	@JoinColumn(name="id_album")
 	private Album album;
  
+	@Column(length=100, nullable=false)
+	private String nomePT;
+	
+	@Column(length=100, nullable=false)
+	private String nomeEN;
+	
 	@Column(length=10000, nullable=false)
 	private String portugues;
 	

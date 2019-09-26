@@ -1,6 +1,7 @@
 package br.com.codersistemas.view.controllers;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,6 +51,18 @@ public class CadastrarLetraController extends CrudController<Letra, Long> {
 	protected BaseRepository getRepository(){
 		return repository;
 	}
+	
+	public String visualizar(Letra obj) {
+		getLog().log(Level.INFO, String.format("visualizar %s", obj));
+		this.obj = obj;
+		String[] splitPT = this.obj.getPortugues().split("\n");
+		for (String string : splitPT) {
+			getLog().log(Level.INFO, string);
+		}
+		String[] splitEN = this.obj.getIngles().split("\n");
+		return "visualizar.xhtml";//?faces-redirect=true
+	}
+
 	
 	public Letra getObj() {
 		return obj;

@@ -44,11 +44,12 @@
         				 </p:column>
  
         				 <p:column headerText="Nome">
-            				<h:outputText value="#{item.ingles}" />
+            				<h:outputText value="#{item.nomeEN}" />
         				 </p:column>
         				 
         				 <p:column headerText="Ações">
  							<p:commandButton id="alterar" title="Alterar" icon="fa fa-fw fa-pencil" action="#{cadastrarLetraController.selecionar(item)}" immediate="true" />
+ 							<p:commandButton id="visualizar" title="Visualizar" icon="fa fa-fw fa-eye" action="#{cadastrarLetraController.visualizar(item)}" immediate="true" />
         				 </p:column>
  
 			</p:dataTable>
