@@ -11,31 +11,31 @@
 <ui:composition template="/template/layoutBase.xhtml">
 
 	<ui:define name="content">
-		<ui:param name="action" value="#{cadastrarLetraController}"></ui:param>
+		<ui:param name="action" value="#{visualizarLetraController}"></ui:param>
 
 		<h:form id="form-cadastro">
 			<p:growl id="menssagens" showSummary="false" showDetail="true" />
+			<h3>Visualizar registro</h3>
 			<div class="ui-fluid">
         		<p:panelGrid columns="2" columnClasses="ui-g-6,ui-md-6,ui-g-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
         		
 					<p:outputLabel id="lbId" value="Código" for="id" />
 					<p:outputLabel id="lb-album" value="Album" for="album" />
 					
-					<p:inputText id="id" value="#{action.obj.id}" required="false" readonly="false" />
-					<p:selectOneMenu id="album" value="#{action.obj.album}" converter="entityConverter" validator="entityValidator" required="true">
-						<f:selectItems value="#{action.albuns}" var="i" itemValue="#{i}" itemLabel="#{i.nome}" />
-					</p:selectOneMenu>
+					<h:outputText id="id" value="#{action.obj.id}" required="false" readonly="false" />
+					<h:outputText id="album" value="#{action.obj.album.nome}" />
 					
-					<p:outputLabel id="lbPortugues" value="Portugues" for="portugues" />
-					<p:outputLabel id="lbIngles" value="Ingles" for="ingles" />
+					<p:outputLabel id="lbPortugues" value="Portugues" />
+					<p:outputLabel id="lbIngles" value="Ingles" />
 					
-					<h:outputText id="nomePT" value="#{action.obj.nomePT}" />
+					<h:outputText  id="nomePT" value="#{action.obj.nomePT}" />
 					<h:outputText id="nomeEN" value="#{action.obj.nomeEN}" />
 					
-					<h:outputText id="portugues" value="#{action.obj.portugues}" escape="false" />
-					<h:outputText id="ingles" value="#{action.obj.ingles}" escape="false" />
-					
         		</p:panelGrid>
+        		
+        		<p:dataList value="#{action.letras}" var="l">
+        			<h:outputText value="#{l}" escape="false"/>
+        		</p:dataList>
         		
       		</div>
 		</h:form>

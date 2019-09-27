@@ -1,0 +1,10 @@
+drop table if exists public.album_letra;
+drop table if exists public.letra;
+drop table if exists public.album;
+drop table if exists public.pessoa;
+drop table if exists public.usuario;
+drop sequence if exists public.letra_sequence;
+drop sequence if exists public.album_sequence;
+drop sequence if exists public.pessoa_sequence;
+drop sequence if exists public.usuario_sequence;
+drop sequence if exists public.hibernate_sequence;

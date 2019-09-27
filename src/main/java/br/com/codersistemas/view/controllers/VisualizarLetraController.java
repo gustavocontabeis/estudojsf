@@ -1,5 +1,6 @@
 package br.com.codersistemas.view.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +17,8 @@ import br.com.codersistemas.model.repository.BaseRepository;
 import br.com.codersistemas.model.repository.LetraRepository;
 
 @RequestScoped
-@Named(value="cadastrarLetraController")
-public class CadastrarLetraController extends CrudController<Letra, Long> {
+@Named(value="visualizarLetraController")
+public class VisualizarLetraController extends CrudController<Letra, Long> {
 	
 	@Inject
 	@AppLogger
@@ -32,6 +33,7 @@ public class CadastrarLetraController extends CrudController<Letra, Long> {
 	private AlbumRepository albumRepository;
 	
 	private List<Album> albuns;
+	private List<String> letras;
 	
 	public void instanciarObjeto() {
 		obj = new Letra();
@@ -52,6 +54,38 @@ public class CadastrarLetraController extends CrudController<Letra, Long> {
 		return repository;
 	}
 	
+	public String selecionar(Letra obj) {
+		getLog().log(Level.INFO, String.format("visualizar %s", obj));
+		this.obj = obj;
+		
+		letras = new ArrayList<>();
+		
+		String[] splitPT = this.obj.getPortugues().split("<br>");
+		for (String string : splitPT) {
+			getLog().log(Level.INFO, string);
+			//letras.add(string);
+		}
+		String[] splitEN = this.obj.getIngles().split("<br>");
+		for (String string : splitEN) {
+			getLog().log(Level.INFO, string);
+			//letras.add(string);
+		}
+		
+		int tamanho = splitPT.length > splitEN.length ? splitPT.length : splitEN.length;
+		
+		for (int i = 0; i < tamanho; i++) {
+			if(i < splitEN.length) {
+				letras.add("<spam style='color:black'>EN-"+splitEN[i]+"</spam>");
+			}
+			if(i < splitPT.length) {
+				letras.add("<spam style='color:#8d8787'>PT-"+splitPT[i]+"</spam>");
+			}
+		}
+		
+		return "visualizar.xhtml";//?faces-redirect=true
+	}
+
+	
 	public Letra getObj() {
 		return obj;
 	}
@@ -71,6 +105,14 @@ public class CadastrarLetraController extends CrudController<Letra, Long> {
 
 	public void setAlbuns(List<Album> albuns) {
 		this.albuns = albuns;
+	}
+
+	public List<String> getLetras() {
+		return letras;
+	}
+
+	public void setLetras(List<String> letras) {
+		this.letras = letras;
 	}
 
 }
