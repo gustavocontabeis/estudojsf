@@ -6,6 +6,17 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:format="http://codersistemas.com.br/LocalDateTimeConverter">
 <h:head>
+<script type="text/css">
+	.letra-en{
+		font-size: large;
+		color:black;
+	}
+	.letra-pt{
+		font-size: large;
+		color:#8d8787;
+	}
+
+</script>
 </h:head>
 
 <ui:composition template="/template/layoutBase.xhtml">
@@ -34,7 +45,9 @@
         		</p:panelGrid>
         		
         		<p:dataList value="#{action.letras}" var="l">
-        			<h:outputText value="#{l}" escape="false"/>
+        			<div class="ok">
+	        			<h:outputText value="#{l}" escape="false"/>
+        			</div>
         		</p:dataList>
         		
       		</div>

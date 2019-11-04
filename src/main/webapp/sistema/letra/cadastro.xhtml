@@ -64,7 +64,8 @@
 					<h:column/>
 					
         		</p:panelGrid>
-        		
+        		<p:remoteCommand name="tche" update=":form-cadastro:portugues" autoRun="true" oncomplete="console.log('ok')"/>
+        		<span onclick="tche()">ok</span>
       		</div>
 		</h:form>
 	

@@ -60,26 +60,35 @@ public class VisualizarLetraController extends CrudController<Letra, Long> {
 		
 		letras = new ArrayList<>();
 		
+		getLog().log(Level.INFO, this.obj.getPortugues());
+		
 		String[] splitPT = this.obj.getPortugues().split("<br>");
 		for (String string : splitPT) {
-			getLog().log(Level.INFO, string);
-			//letras.add(string);
+			//getLog().log(Level.INFO, string);
+			letras.add(string);
 		}
 		String[] splitEN = this.obj.getIngles().split("<br>");
 		for (String string : splitEN) {
-			getLog().log(Level.INFO, string);
-			//letras.add(string);
+			//getLog().log(Level.INFO, string);
+			letras.add(string);
 		}
 		
 		int tamanho = splitPT.length > splitEN.length ? splitPT.length : splitEN.length;
 		
 		for (int i = 0; i < tamanho; i++) {
 			if(i < splitEN.length) {
-				letras.add("<spam style='color:black'>EN-"+splitEN[i]+"</spam>");
+				letras.add("<span class='letra-en'>ENXXX-"+splitEN[i]+"</span>");
 			}
 			if(i < splitPT.length) {
-				letras.add("<spam style='color:#8d8787'>PT-"+splitPT[i]+"</spam>");
+				letras.add("<span class='letra-pt'>PT-"+splitPT[i]+"</span>");
 			}
+		}
+		
+		getLog().log(Level.INFO, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		
+		for(String a : letras) {
+			//getLog().log(Level.INFO, a);
+			
 		}
 		
 		return "visualizar.xhtml";//?faces-redirect=true

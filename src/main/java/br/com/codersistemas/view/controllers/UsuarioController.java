@@ -52,8 +52,8 @@ public class UsuarioController implements Serializable {
 		
 		//LOG.info("efetuarLogin");
 		
-		obj.setLogin("admin");
-		obj.setSenha("123");
+		//obj.setLogin("admin");
+		//obj.setSenha("123");
 		
 		if (StringUtils.isEmpty(obj.getLogin()) || StringUtils.isBlank(obj.getLogin())) {
 			Uteis.mensagem("Favor informar o login!");
@@ -64,13 +64,13 @@ public class UsuarioController implements Serializable {
 		} else {
 			obj = usuarioRepository.validaUsuario(obj);
 			if (obj != null) {
-				obj.setSenha(null);
+				//obj.setSenha(null);
 				obj.setId(obj.getId());
 				FacesContext facesContext = FacesContext.getCurrentInstance();
 				facesContext.getExternalContext().getSessionMap().put("usuarioAutenticado", obj);
 				return "sistema/home?faces-redirect=true";
 			} else {
-				Uteis.mensagem("Não foi possível efetuar o login com esse usuário e senha!");
+				Uteis.mensagem("Nï¿½o foi possï¿½vel efetuar o login com esse usuï¿½rio e senha!");
 				return null;
 			}
 		}
