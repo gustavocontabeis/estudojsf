@@ -6,23 +6,22 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:format="http://codersistemas.com.br/LocalDateTimeConverter">
 <h:head>
-<script type="text/css">
-	.letra-en{
-		font-size: large;
-		color:black;
-	}
-	.letra-pt{
-		font-size: large;
-		color:#8d8787;
-	}
-
-</script>
 </h:head>
 
 <ui:composition template="/template/layoutBase.xhtml">
 
 	<ui:define name="content">
 		<ui:param name="action" value="#{visualizarLetraController}"></ui:param>
+		<style type="text/css">
+			.letra-en {
+				font-size: medium;
+				color:black;
+			}
+			.letra-pt {
+				font-size: small;
+				color:silver;
+			}
+		</style>
 
 		<h:form id="form-cadastro">
 			<p:growl id="menssagens" showSummary="false" showDetail="true" />

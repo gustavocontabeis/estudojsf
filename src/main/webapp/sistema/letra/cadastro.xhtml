@@ -34,7 +34,7 @@
 				</f:facet>
 			</p:toolbar>
 			<div class="ui-fluid">
-        		<p:panelGrid columns="4" columnClasses="ui-g-3 ui-md-3,ui-g-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+        		<p:panelGrid columns="4" columnClasses="ui-md-1, ui-md-5, ui-md-5, ui-md-1" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
         		
 					<h:column/>
 					<p:outputLabel id="lbId" value="Código" for="id" />
@@ -59,13 +59,11 @@
 					<h:column/>
 					
 					<h:column/>
-					<p:editor id="portugues" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" />
-					<p:editor id="ingles" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" />
+					<h:inputTextarea id="portugues" value="#{action.obj.portugues}" required="true" requiredMessage="O portugues é de preenchimento obrigatório" cols="30" rows="20" />
+					<h:inputTextarea id="ingles" value="#{action.obj.ingles}" required="true" requiredMessage="O ingles é de preenchimento obrigatório" cols="30" rows="20" />
 					<h:column/>
 					
         		</p:panelGrid>
-        		<p:remoteCommand name="tche" update=":form-cadastro:portugues" autoRun="true" oncomplete="console.log('ok')"/>
-        		<span onclick="tche()">ok</span>
       		</div>
 		</h:form>
 	
